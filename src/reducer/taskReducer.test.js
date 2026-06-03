@@ -31,7 +31,7 @@ describe('issueReducer', () => {
     const state = {
       ...initialState,
       items: [
-        { _id: '1', issueId: 'ISS1001', title: 'Bug 1', status: 'open' },
+        { _id: '1', issueId: 'ISS1001', title: 'Bug 1', status: 'open' }, 
         { _id: '2', issueId: 'ISS1002', title: 'Bug 2', status: 'open' }
       ]
     };

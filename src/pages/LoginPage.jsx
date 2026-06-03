@@ -25,12 +25,19 @@ function LoginPage() {
       } else {
         data = await loginUser(email, password);
       }
-      if (data.data?.token) {
-        localStorage.setItem('token', data.data.token);
-        if (data.data.user) {
-          localStorage.setItem('user', JSON.stringify(data.data.user));
+      // Login: token at top level; Register: no token in response
+      const token = data.token || data.data?.token;
+      if (token) {
+        localStorage.setItem('token', token);
+        if (data.data) {
+          localStorage.setItem('user', JSON.stringify(data.data));
         }
         navigate('/dashboard');
+      } else if (isRegister) {
+        // Register succeeded but no token in response — switch to login
+        setIsRegister(false);
+        setError('');
+        alert('Registration successful! Please login.');
       } else {
         setError('No token received');
       }

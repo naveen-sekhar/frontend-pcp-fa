@@ -40,9 +40,11 @@ export async function syncData() {
 
 // ============ ISSUES CRUD ============
 export async function getAllIssues(filters = {}) {
-  const params = {};
+  const params = { limit: 200 };
   if (filters.status) params.status = filters.status;
   if (filters.priority) params.priority = filters.priority;
+  if (filters.page) params.page = filters.page;
+  if (filters.limit) params.limit = filters.limit;
   const res = await api.get('/issues', { params });
   return res.data;
 }
