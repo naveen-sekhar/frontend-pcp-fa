@@ -60,7 +60,7 @@ export async function createIssue(data) {
 }
 
 export async function updateIssue(id, data) {
-  const res = await api.put(`/issues/${id}`, data);
+  const res = await api.patch(`/issues/${id}`, data);
   return res.data;
 }
 
